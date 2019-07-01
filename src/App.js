@@ -1,6 +1,7 @@
 import { encodeAddress } from '@polkadot/keyring';
 import * as pUtil from '@polkadot/util';
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faGifts, faUnlink } from '@fortawesome/free-solid-svg-icons';
@@ -112,6 +113,11 @@ const MySelect = styled.select`
   padding: 1px;
   padding-left: 2px;
   background: white;
+`;
+
+const MyLink = styled(Link)`
+  width: 120px;
+  height: 100%;
 `;
 
 
@@ -249,96 +255,104 @@ class App extends React.Component {
     }
 
     return (
+      <Router>
       <div>
         <Navbar>
           <img src={Kusama} width='120px' height='20px'/>
-          <NavButton>Home</NavButton>
-          <NavButton>User Manual</NavButton>
-          <NavButton>Claims</NavButton>
-          <NavButton>Faucet</NavButton>
+          <MyLink to='#'><NavButton>Home</NavButton></MyLink>
+          <MyLink to='/manual'><NavButton>User Manual</NavButton></MyLink>
+          <MyLink to='/claims'><NavButton>Claims</NavButton></MyLink>
+          <MyLink to='/faucet'><NavButton>Faucet</NavButton></MyLink>
           <NavButton><FontAwesomeIcon icon={faGifts}/>{' '}Swag Store</NavButton>
         </Navbar>
         <Spacer/>
-        <Main>
-          <MainLeft>
-            <h1>Claim KSMAs</h1>
-            <p>This DApp will walk you through the process of claiming KSMAs. In order to claim KSMAs you need to have an allocation of DOTs.</p>
-            <h2>Create a Kusama address</h2>
-            <p>You will first need to create an account. This is the account that you will be claiming your KSMAs to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
-            <ul>
-              <li>Polkadot UI <b>(Recommended for most users)</b></li>
-              <li><code>subkey</code></li>
-              <li>Enzyme wallet</li>
-              <li>Polkawallet</li>
-            </ul>
+        <Route
+          path='/claims'
+          render={() => (
+            <>
+              <Main>
+                <MainLeft>
+                  <h1>Claim KSMAs</h1>
+                  <p>This DApp will walk you through the process of claiming KSMAs. In order to claim KSMAs you need to have an allocation of DOTs.</p>
+                  <h2>Create a Kusama address</h2>
+                  <p>You will first need to create an account. This is the account that you will be claiming your KSMAs to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
+                  <ul>
+                    <li>Polkadot UI <b>(Recommended for most users)</b></li>
+                    <li><code>subkey</code></li>
+                    <li>Enzyme wallet</li>
+                    <li>Polkawallet</li>
+                  </ul>
 
-          </MainLeft>
-          <MainRight>
-          <h4>What is your Kusama address?</h4>
-            <div>
-              <MyInput
-                width='300'
-                name='valid-check'
-                onChange={this.inputChange}
-              />
-              {' '}<SucceedIcon icon={Boolean(this.state.status) ? faCoffee : faUnlink} status={this.state.status}/>
-            </div>
-            <br/>
-            <h4>How will you claim?</h4>
-            <MySelect onChange={this.handleSelect} defaultValue="">
-              <option value="" disabled hidden>Choose your method to claim</option>
-              <option value="Metamask">Metamask</option>
-              <option value="MyCrypto">MyCrypto</option>
-            </MySelect>
-            {
-              this.state.metamask && 
-                <div>
-                  <h3>Metamask</h3>
-                  <p>You will send the claim transaction from your currently active Metamask account.</p>
-                  <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <p>Are you claiming for an amended address?</p>
-                    <input type='checkbox' onChange={() => this.setState({ showAmend: !this.state.showAmend })}></input>
+                </MainLeft>
+                <MainRight>
+                <h4>What is your Kusama address?</h4>
+                  <div>
+                    <MyInput
+                      width='300'
+                      name='valid-check'
+                      onChange={this.inputChange}
+                    />
+                    {' '}<SucceedIcon icon={Boolean(this.state.status) ? faCoffee : faUnlink} status={this.state.status}/>
                   </div>
+                  <br/>
+                  <h4>How will you claim?</h4>
+                  <MySelect onChange={this.handleSelect} defaultValue="">
+                    <option value="" disabled hidden>Choose your method to claim</option>
+                    <option value="Metamask">Metamask</option>
+                    <option value="MyCrypto">MyCrypto</option>
+                  </MySelect>
                   {
-                    this.state.showAmend &&
+                    this.state.metamask && 
                       <div>
-                        <p>Which address is it?</p>
-                        <input onChange={this.validateAmend}/>
-                        {' '}<SucceedIcon icon={Boolean(this.state.status) ? faCoffee : faUnlink} status={this.state.correctAmendment}/>
+                        <h3>Metamask</h3>
+                        <p>You will send the claim transaction from your currently active Metamask account.</p>
+                        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                          <p>Are you claiming for an amended address?</p>
+                          <input type='checkbox' onChange={() => this.setState({ showAmend: !this.state.showAmend })}></input>
+                        </div>
+                        {
+                          this.state.showAmend &&
+                            <div>
+                              <p>Which address is it?</p>
+                              <input onChange={this.validateAmend}/>
+                              {' '}<SucceedIcon icon={Boolean(this.state.status) ? faCoffee : faUnlink} status={this.state.correctAmendment}/>
+                            </div>
+                        }
+                        <p>Input your Kusama address:</p>
+                        <input
+                          name='metamask-claim'
+                          onChange={this.inputChange}
+                        />
+                        <button
+                          onClick={this.tryClaim}
+                        >Claim</button>
                       </div>
                   }
-                  <p>Input your Kusama address:</p>
-                  <input
-                    name='metamask-claim'
-                    onChange={this.inputChange}
-                  />
-                  <button
-                    onClick={this.tryClaim}
-                  >Claim</button>
-                </div>
-            }
-            {
-              this.state.myCrypto &&
-                <div>
-                  <h3>MyCrypto</h3>
-                  <p>Does not require in browser compatibility (send from MyCrypto)</p>
-                </div>
-            }
-          </MainRight>
-        </Main>
-        <MainBottom>
-          <h2>Check your information:</h2>
-          <h4>Paste address to your DOT allocation below to check your Kusama address, index and balance:</h4>
-          <MyInput
-            width='400'
-            name='balance-check'
-            onChange={this.balanceCheck}
-          />
-          <p><b>Address:</b> {this.state.balData ? this.state.balData.polkadot : 'None'}</p>
-          <p><b>Index:</b> {this.state.balData ? this.state.balData.index : 'None'}</p> 
-          <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMAs</p>
-        </MainBottom>
+                  {
+                    this.state.myCrypto &&
+                      <div>
+                        <h3>MyCrypto</h3>
+                        <p>Does not require in browser compatibility (send from MyCrypto)</p>
+                      </div>
+                  }
+                </MainRight>
+              </Main>
+              <MainBottom>
+                <h2>Check your information:</h2>
+                <h4>Paste address to your DOT allocation below to check your Kusama address, index and balance:</h4>
+                <MyInput
+                  width='400'
+                  name='balance-check'
+                  onChange={this.balanceCheck}
+                />
+                <p><b>Address:</b> {this.state.balData ? this.state.balData.polkadot : 'None'}</p>
+                <p><b>Index:</b> {this.state.balData ? this.state.balData.index : 'None'}</p> 
+                <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMAs</p>
+              </MainBottom>
+            </>
+          )}/>
       </div>
+      </Router>
     );
   }
 }
