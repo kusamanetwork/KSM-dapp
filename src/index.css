@@ -1,10 +1,15 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: black;
+  background-color:#FFF;
+  /* background-image: radial-gradient(white 16%, transparent 17%), radial-gradient(white 16%, transparent 17%);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px; */
 }
 
 code {
