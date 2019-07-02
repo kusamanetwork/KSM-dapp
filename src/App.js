@@ -50,6 +50,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   padding-top: 0;
+  margin-top: 1%;
 `;
 
 const MainLeft = styled.div`
@@ -120,6 +121,19 @@ const MySelect = styled.select`
 const MyLink = styled(Link)`
   width: 120px;
   height: 100%;
+`;
+
+const MyButton = styled.button`
+  border-color: black;
+  border-radius: 10px;
+  border-width: 2px;
+  padding: 10px;
+  background: white;
+  :hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+  }
 `;
 
 
@@ -265,7 +279,7 @@ class App extends React.Component {
           <MyLink to='/manual'><NavButton>User Manual</NavButton></MyLink>
           <MyLink to='/claims'><NavButton>Claims</NavButton></MyLink>
           <MyLink to='/faucet'><NavButton>Faucet</NavButton></MyLink>
-          <NavButton><FontAwesomeIcon icon={faGifts}/>{' '}Swag Store</NavButton>
+          <NavButton></NavButton>
         </Navbar>
         <Spacer/>
         <Route path='/manual' component={Manual}/>
@@ -301,8 +315,9 @@ class App extends React.Component {
                   <h4>How will you claim?</h4>
                   <MySelect onChange={this.handleSelect} defaultValue="">
                     <option value="" disabled hidden>Choose your method to claim</option>
-                    <option value="Metamask">Metamask</option>
-                    <option value="MyCrypto">MyCrypto</option>
+                    <option value="Metamask">Metamask (before genesis)</option>
+                    <option value="MyCrypto">MyCrypto (before genesis)</option>
+                    <option value="On-chain" disabled>On-chain (after genesis)</option>
                   </MySelect>
                   {
                     this.state.metamask && 
@@ -317,18 +332,18 @@ class App extends React.Component {
                           this.state.showAmend &&
                             <div>
                               <p>Which address is it?</p>
-                              <input onChange={this.validateAmend}/>
+                              <MyInput onChange={this.validateAmend}/>
                               {' '}<SucceedIcon icon={Boolean(this.state.status) ? faCoffee : faUnlink} status={this.state.correctAmendment}/>
                             </div>
                         }
-                        <p>Input your Kusama address:</p>
+                        {/* <p>Input your Kusama address:</p>
                         <input
                           name='metamask-claim'
                           onChange={this.inputChange}
-                        />
-                        <button
+                        /> */}
+                        <MyButton
                           onClick={this.tryClaim}
-                        >Claim</button>
+                        >Claim</MyButton>
                       </div>
                   }
                   {

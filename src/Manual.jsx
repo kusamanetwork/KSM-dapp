@@ -16,6 +16,7 @@ const Main = styled.div`
   color: white;
   background: transparent;
   margin: 0;
+  margin-left: 200px;
   width: calc(100vw - 200px);
 `;
 
@@ -24,6 +25,7 @@ const Sidebar = styled.div`
   width: 200px;
   display: flex;
   flex-direction: column;
+  position: fixed;
 `;
 
 const SidebarButton = styled.button`
