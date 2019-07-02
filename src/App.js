@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faGifts, faUnlink } from '@fortawesome/free-solid-svg-icons';
 import Web3 from 'web3';
 
+import Manual from './Manual';
+
 import Kusama from './assets/kusama_word.png';
 
 import Claims from './build/contracts/Claims.json';
@@ -89,7 +91,7 @@ const MainBottom = styled.div`
 
 const Spacer = styled.div`
   width: 100%;
-  height: 90px;
+  height: 60px;
   background: transparent;
 `;
 
@@ -266,6 +268,7 @@ class App extends React.Component {
           <NavButton><FontAwesomeIcon icon={faGifts}/>{' '}Swag Store</NavButton>
         </Navbar>
         <Spacer/>
+        <Route path='/manual' component={Manual}/>
         <Route
           path='/claims'
           render={() => (

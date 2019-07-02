@@ -12061,8 +12061,8 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0xD2AdCDc6C0268C6F48174dc21fAc54d65853bAdC",
-      "transactionHash": "0xa5d49b46c6fe9203b36449e52d6ba0cf62d565d0a6857dd647220882c06fb855"
+      "address": "0xF1894df6960a676a96BB5C1Ef6c8F6ce662F5B35",
+      "transactionHash": "0x13eb0e1e20c9a28605de7454c027c96a84feaeabb421cdaa14b34ec25453de7d"
     },
     "1561206413369": {
       "events": {},
@@ -12072,7 +12072,7 @@
     }
   },
   "schemaVersion": "3.0.9",
-  "updatedAt": "2019-07-01T09:27:46.123Z",
+  "updatedAt": "2019-07-02T08:17:04.285Z",
   "devdoc": {
     "author": "Web3 Foundation",
     "methods": {

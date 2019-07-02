@@ -1,23 +1,38 @@
 body {
   margin: 0;
-  font-family: "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: black;
   background-color: #000;
-  /* background-image: radial-gradient(white 16%, transparent 17%), radial-gradient(white 16%, transparent 17%);
-  background-size: 60px 60px;
-  background-position: 0 0, 30px 30px; */
   overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'Visuelt';
+  src: local('Visuelt'), url(./fonts/Visuelt_Bold.ttf);
+}
+
+html {
+  font-family: 'Space Mono', monospace;
+}
+
+button, Link {
+  font-family: 'Visuelt' !important;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
   margin: 2px;
 }
 
-code {
+a {
+  color: #BC0066;
+}
+
+a:hover {
+  color: red;
+}
+
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
