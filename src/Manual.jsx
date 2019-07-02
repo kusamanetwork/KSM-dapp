@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Security from './docs/security.md';
@@ -27,6 +28,7 @@ const Sidebar = styled.div`
 
 const SidebarButton = styled.button`
   height: 30px;
+  width: 100%;
   background: transparent;
   color: white;
   border: none;
@@ -37,32 +39,80 @@ const SidebarButton = styled.button`
   }
 `;
 
-class Manual extends React.Component {
+const MyLink = styled(Link)`
+  height: 30px;
+  width: 200px;
+`;
+
+const Config = [
+  { title: "Overview", source: Security, path: '/overview' },
+  { title: "Reward Mechanism", source: Security, path: '/rewards' },
+  { title: "Governance", source: Security, path: '/governance' },
+  { title: "Validators", source: Security, path: '/validators' },
+  { title: "Critical Issues / Bugs", source: Security, path: '/issues' },
+
+];
+
+class Page extends React.Component {
 
   state = {
-    security: null,
+    page: null,
   }
 
-  componentWillMount = () => {
-    fetch(Security).then((res) => res.text()).then((text) => {
+  constructor(props) {
+    super(props);
+    fetch(props.source).then((res) => res.text()).then((text) => {
       this.setState({
-        security: text,
-      })
+        page: text,
+      });
+    });
+  }
+
+  render() {
+    return <ReactMarkdown source={this.state.page}/>
+  }
+
+}
+
+class Manual extends React.Component {
+
+  renderLinks = () => {
+    return Config.map((item) => {
+      return (
+        <MyLink to={`/manual${item.path}`}>
+          <SidebarButton>
+            {item.title}
+          </SidebarButton>
+        </MyLink>
+      )
+    })
+  }
+
+  renderRoutes = () => {
+    return Config.map((item) => {
+      return (
+        <Route
+          path={`/manual${item.path}`}
+          render={() => (
+            <Page source={item.source}/>
+          )}
+        />
+      )
     })
   }
 
   render() {
+
+    const buttons = this.renderLinks();
+    const routes = this.renderRoutes();
+
     return (
       <Container>
         <Sidebar>
-          <SidebarButton>Overview</SidebarButton>
-          <SidebarButton>Reward Mechanism</SidebarButton>
-          <SidebarButton>Governance</SidebarButton>
-          <SidebarButton>Validators</SidebarButton>
-          <SidebarButton>Critical Issues / Bugs</SidebarButton>
+          {buttons}
         </Sidebar>
         <Main>
-          <ReactMarkdown source={this.state.security}/>
+          {routes}
         </Main>
       </Container>
     )
