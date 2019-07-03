@@ -1,4 +1,4 @@
-import { encodeAddress } from '@polkadot/keyring';
+import { decodeAddress, encodeAddress } from '@polkadot/keyring';
 import * as pUtil from '@polkadot/util';
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -218,7 +218,10 @@ class App extends React.Component {
     const bal = await this.state.frozenToken.methods.balanceOf(value).call();
     const claimData = await this.state.claims.methods.claims(value).call();
     const { polkadot, index } = claimData;
-    const pAddress = encodeAddress(pUtil.hexToU8a(polkadot));
+    let pAddress;
+    if (polkadot !== '0x0000000000000000000000000000000000000000000000000000000000000000') {
+      pAddress = encodeAddress(pUtil.hexToU8a(polkadot));
+    }
     
     this.setState({
       balData: {
@@ -244,8 +247,32 @@ class App extends React.Component {
     }
   }
 
-  tryClaim = () => {
+  tryClaim = async () => {
+    if (!Boolean(this.state.status)) {
+      return;
+    }
+    if (!this.state.claims) {
+      return;
+    }
 
+    const { claims, defaultAccount } = this.state;
+
+    let eth;
+    if (Boolean(this.state.correctAmendment)) {
+      eth = this.state.amendedAddress;
+    } else {
+      eth = defaultAccount;
+    }
+
+    const decoded = pUtil.u8aToHex(decodeAddress(this.state['valid-check']));
+
+    const txResult = await claims.methods.claim(eth, decoded).send({
+      from: defaultAccount,
+      gas: 1500000,
+      gasPrice: 20000,
+    });
+
+    console.group(txResult);
   }
 
   validateAmend = async (e) => {
@@ -261,6 +288,7 @@ class App extends React.Component {
     if (amend === defaultAccount) {
       this.setState({
         correctAmendment: 'true',
+        amendedAddress: value,
       })
     }
   }
@@ -299,6 +327,7 @@ class App extends React.Component {
                     <li>Enzyme wallet</li>
                     <li>Polkawallet</li>
                   </ul>
+                  <a href="#">Need help?</a>
 
                 </MainLeft>
                 <MainRight>
@@ -336,11 +365,6 @@ class App extends React.Component {
                               {' '}<SucceedIcon icon={Boolean(this.state.status) ? faCoffee : faUnlink} status={this.state.correctAmendment}/>
                             </div>
                         }
-                        {/* <p>Input your Kusama address:</p>
-                        <input
-                          name='metamask-claim'
-                          onChange={this.inputChange}
-                        /> */}
                         <MyButton
                           onClick={this.tryClaim}
                         >Claim</MyButton>
@@ -350,6 +374,18 @@ class App extends React.Component {
                     this.state.myCrypto &&
                       <div>
                         <h3>MyCrypto</h3>
+                        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                          <p>Are you claiming for an amended address?</p>
+                          <input type='checkbox' onChange={() => this.setState({ showAmend: !this.state.showAmend })}></input>
+                        </div>
+                        {
+                          this.state.showAmend &&
+                            <div>
+                              <p>Which address is it?</p>
+                              <MyInput onChange={this.validateAmend}/>
+                              {' '}<SucceedIcon icon={Boolean(this.state.status) ? faCoffee : faUnlink} status={this.state.correctAmendment}/>
+                            </div>
+                        }
                         <p>Does not require in browser compatibility (send from MyCrypto)</p>
                       </div>
                   }
@@ -363,8 +399,8 @@ class App extends React.Component {
                   name='balance-check'
                   onChange={this.balanceCheck}
                 />
-                <p><b>Address:</b> {this.state.balData ? this.state.balData.polkadot : 'None'}</p>
-                <p><b>Index:</b> {this.state.balData ? this.state.balData.index : 'None'}</p> 
+                <p><b>Address:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.polkadot : 'None'}</p>
+                <p><b>Index:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.index : 'None'}</p> 
                 <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMAs</p>
               </MainBottom>
             </>
