@@ -317,13 +317,13 @@ class App extends React.Component {
             <>
               <Main>
                 <MainLeft>
-                  <h1>Claim KSMAs</h1>
-                  <p>This DApp will walk you through the process of claiming KSMAs. In order to claim KSMAs you need to have an allocation of DOTs.</p>
+                  <h1>Claim KSMA</h1>
+                  <p>This DApp will walk you through the process of claiming KSMA. In order to claim KSMA you need to have an allocation of DOTs.</p>
                   <h2>Create a Kusama address</h2>
-                  <p>You will first need to create an account. This is the account that you will be claiming your KSMAs to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
+                  <p>You will first need to create an account. This is the account that you will be claiming your KSMA to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
                   <ul>
                     <li>Polkadot UI <b>(Recommended for most users)</b></li>
-                    <li><code>subkey</code></li>
+                    <li><code>subkey</code> <b>(Most secure)</b></li>
                     <li>Enzyme wallet</li>
                     <li>Polkawallet</li>
                   </ul>
@@ -401,7 +401,7 @@ class App extends React.Component {
                 />
                 <p><b>Address:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.polkadot : 'None'}</p>
                 <p><b>Index:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.index : 'None'}</p> 
-                <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMAs</p>
+                <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMA</p>
               </MainBottom>
             </>
           )}/>

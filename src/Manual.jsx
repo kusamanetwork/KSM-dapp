@@ -3,6 +3,10 @@ import ReactMarkdown from 'react-markdown';
 import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import './manual.css';
+
+import Claiming from './docs/claiming.md';
+import Overview from './docs/overview.md';
 import Security from './docs/security.md';
 
 const Container = styled.div`
@@ -47,10 +51,11 @@ const MyLink = styled(Link)`
 `;
 
 const Config = [
-  { title: "Overview", source: Security, path: '/overview' },
-  { title: "Reward Mechanism", source: Security, path: '/rewards' },
+  { title: "Overview", source: Overview, path: '/overview' },
+  { title: "How to Claim", source: Claiming, path: '/claiming'},
   { title: "Governance", source: Security, path: '/governance' },
-  { title: "Validators", source: Security, path: '/validators' },
+  { title: "Validator Security", source: Security, path: '/validators' },
+  { title: "Code of Conduct", source: Security, path: '/code-of-conduct' },
   { title: "Critical Issues / Bugs", source: Security, path: '/issues' },
 
 ];

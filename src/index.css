@@ -32,7 +32,12 @@ a:hover {
   color: red;
 }
 
-/* code {
+code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-} */
+    background: #232323;
+    padding: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: white;
+}
