@@ -21,7 +21,15 @@ button, Link {
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-  margin: 8px;
+  margin: 0;
+}
+
+p {
+  font-size: 13px;
+}
+
+li {
+  font-size: 14px;
 }
 
 a {
