@@ -26,6 +26,7 @@ const Navbar = styled.div`
   align-items: center;
   justify-content: space-around;
   position: fixed;
+  
   color: white;
   z-index: 100;
 `;
