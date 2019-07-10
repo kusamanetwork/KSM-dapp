@@ -5,10 +5,10 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboard, faThumbsUp, faGifts, faUnlink } from '@fortawesome/free-solid-svg-icons';
+import { faClipboard, faThumbsUp, faUnlink } from '@fortawesome/free-solid-svg-icons';
 import Web3 from 'web3';
 
-import Manual from './Manual';
+import Manual from './components/Manual';
 
 import Kusama from './assets/kusama_word.png';
 
@@ -368,8 +368,8 @@ class App extends React.Component {
                   <br/>
                   <p>You will first need to create an account. This is the account that you will be claiming your KSMA to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
                   <ul>
-                    <li>Polkadot UI <b>(Recommended for most users)</b></li>
-                    <li><code>subkey</code> <b>(Most secure)</b></li>
+                    <li><a href="https://polkadot.js.org/apps/#/accounts" target="_blank">Polkadot UI</a> <b>(Recommended for most users)</b></li>
+                    <li><code><a href="#">subkey</a></code> <b>(Most secure)</b></li>
                     <li><a href="https://chrome.google.com/webstore/detail/enzyme/amligljifngdnodkebecdijmhnhojohh" target="_blank">Enzyme wallet</a> <b>(Chrome only)</b></li>
                     <li>Polkawallet</li>
                   </ul>
@@ -417,35 +417,9 @@ class App extends React.Component {
                             <FontAwesomeIcon icon={faClipboard}/>
                           </DisabledButton>
                         </CopyToClipboard>
-                    </DisabledText>
-                      {/* <h3>MyCrypto</h3>
-                      <div>
-                        Please download and run MyCrypto desktop application locally and follow instructions <a href="#">here</a>.
-                      </div> */}
+                      </DisabledText>
                     </div>
                 }
-                  {/* {
-                    this.state.metamask && 
-                      <div>
-                        <h3>Metamask</h3>
-                        <p>You will send the claim transaction from your currently active Metamask account.</p>
-                        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                          <p>Are you claiming for an amended address?</p>
-                          <input type='checkbox' onChange={() => this.setState({ showAmend: !this.state.showAmend })}></input>
-                        </div>
-                        {
-                          this.state.showAmend &&
-                            <div>
-                              <p>Which address is it?</p>
-                              <MyInput width="450" onChange={this.validateAmend}/>
-                              {' '}<SucceedIcon icon={Boolean(this.state.status) ? faThumbsUp : faUnlink} status={this.state.correctAmendment}/>
-                            </div>
-                        }
-                        <MyButton
-                          onClick={this.tryClaim}
-                        >Claim</MyButton>
-                      </div>
-                  } */}
                 </MainRight>
               </Main>
               <MainBottom>

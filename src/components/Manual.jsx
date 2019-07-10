@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 import './manual.css';
 
-import Claiming from './docs/claiming.md';
-import Overview from './docs/overview.md';
-import Security from './docs/security.md';
+import Claiming from '../docs/claiming.md';
+import Overview from '../docs/overview.md';
+import Security from '../docs/security.md';
 
 const Container = styled.div`
   height: 100%;
@@ -22,6 +22,11 @@ const Main = styled.div`
   margin: 0;
   margin-left: 200px;
   width: calc(100vw - 200px);
+  padding: 12px;
+  :hover {
+    color: black;
+    background: grey;
+  }
 `;
 
 const Sidebar = styled.div`
@@ -57,7 +62,6 @@ const Config = [
   { title: "Validator Security", source: Security, path: '/validators' },
   { title: "Code of Conduct", source: Security, path: '/code-of-conduct' },
   { title: "Critical Issues / Bugs", source: Security, path: '/issues' },
-
 ];
 
 class Page extends React.Component {

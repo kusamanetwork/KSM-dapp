@@ -19,7 +19,6 @@ Another option you may consider using are `subkey` commandline utility which wil
 #### Using Polkadot UI
 
 #### Using `subkey`
-<!-- ### Claim your KSMA with MetaMask -->
 
 ### Claim your KSMA with MyCrypto
 
@@ -36,3 +35,5 @@ Select the `claim` function and enter the address of the Ethereum account that h
 Next enter in the information that the claims DApp outputted for you. For the curious ones, this is the hex representation of your Kusama public key which is how your chosen address is derived.
 
 Unlock your wallet using your preferred method and click "Sign and Send."
+
+You can click on the link to view your transaction on Etherscan, when the transaction is mined to the network then you are finished! When the Kusama network starts you will already have the balance of KSMA in your Kusama address.
