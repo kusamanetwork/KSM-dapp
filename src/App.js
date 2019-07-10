@@ -1,4 +1,4 @@
-import { decodeAddress, encodeAddress } from '@polkadot/keyring';
+import { decodeAddress } from '@polkadot/keyring';
 import * as pUtil from '@polkadot/util';
 import React from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard, faThumbsUp, faUnlink } from '@fortawesome/free-solid-svg-icons';
 import Web3 from 'web3';
 
+import InfoBox from './components/Info';
 import Manual from './components/Manual';
 
 import Kusama from './assets/kusama_word.png';
@@ -78,20 +79,6 @@ const MainRight = styled.div`
   border-radius: 12px;
   padding: 2%;
   padding-top: 0;
-`;
-
-const MainBottom = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  margin-left: 3%;
-  margin-top: -1%;
-  margin-bottom: 3%;
-  background: white;
-  border-radius: 12px;
-  padding: 2%;
-
 `;
 
 const Spacer = styled.div`
@@ -179,7 +166,6 @@ const DisabledButton = styled.button`
 class App extends React.Component {
 
   state = {
-    balanceData: null,
     claims: null,
     correctAmendment: null,
     defaultAccount: null,
@@ -244,35 +230,6 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
-    });
-  }
-
-  balanceCheck = async (e) => {
-    const { value } = e.target;
-
-    if (value.length !== 42) {
-      // Better ethereum address validity check.
-      console.log(value);
-      return;
-    }
-    if (!this.state.frozenToken || !this.state.claims) {
-      return;
-    }
-
-    const bal = await this.state.frozenToken.methods.balanceOf(value).call();
-    const claimData = await this.state.claims.methods.claims(value).call();
-    const { polkadot, index } = claimData;
-    let pAddress;
-    if (polkadot !== '0x0000000000000000000000000000000000000000000000000000000000000000') {
-      pAddress = encodeAddress(pUtil.hexToU8a(polkadot));
-    }
-    
-    this.setState({
-      balData: {
-        bal,
-        index: index || null,
-        polkadot: pAddress || null,
-      }
     });
   }
 
@@ -347,16 +304,16 @@ class App extends React.Component {
       <div>
         <Navbar>
           <img src={Kusama} width='120px' height='20px'/>
-          <MyLink to='#'><NavButton>Home</NavButton></MyLink>
-          <MyLink to='/manual'><NavButton>User Manual</NavButton></MyLink>
+          {/* <MyLink to='#'><NavButton></NavButton></MyLink>
+          <MyLink to='/manual'><NavButton></NavButton></MyLink>
           <MyLink to='/claims'><NavButton>Claims</NavButton></MyLink>
-          <MyLink to='/faucet'><NavButton>Faucet</NavButton></MyLink>
-          <NavButton></NavButton>
+          <MyLink to='/faucet'><NavButton></NavButton></MyLink>
+          <NavButton></NavButton> */}
         </Navbar>
         <Spacer/>
-        <Route path='/manual' component={Manual}/>
+        {/* <Route path='/manual' component={Manual}/> */}
         <Route
-          path='/claims'
+          path='/'
           render={() => (
             <>
               <Main>
@@ -390,8 +347,8 @@ class App extends React.Component {
                     <div>
                       <h4>Claims contract:</h4>
                       <DisabledText>
-                        0xF585E5c8C2b705c1e072c01003Bbe65CF8F57778
-                        <CopyToClipboard text="0xF585E5c8C2b705c1e072c01003Bbe65CF8F57778">
+                        0x4CeBEd1F065a3bA5a4d1De38748fd87Ea1fb06B9
+                        <CopyToClipboard text="0x4CeBEd1F065a3bA5a4d1De38748fd87Ea1fb06B9">
                           <DisabledButton>
                             <FontAwesomeIcon icon={faClipboard}/>
                           </DisabledButton>
@@ -422,18 +379,7 @@ class App extends React.Component {
                 }
                 </MainRight>
               </Main>
-              <MainBottom>
-                <h2>Check your information:</h2>
-                <h4>Paste address to your DOT allocation below to check your Kusama address, index and balance:</h4>
-                <MyInput
-                  width='500'
-                  name='balance-check'
-                  onChange={this.balanceCheck}
-                />
-                <p><b>Address:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.polkadot : 'None'}</p>
-                <p><b>Index:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.index : 'None'}</p> 
-                <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMA</p>
-              </MainBottom>
+              <InfoBox claims={this.state.claims || null} frozenToken={this.state.frozenToken || null} />
             </>
           )}/>
       </div>
