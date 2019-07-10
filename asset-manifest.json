@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/KSMA-dapp/static/css/main.56e9aa38.chunk.css",
+    "main.js": "/KSMA-dapp/static/js/main.c231d40d.chunk.js",
+    "main.js.map": "/KSMA-dapp/static/js/main.c231d40d.chunk.js.map",
+    "runtime~main.js": "/KSMA-dapp/static/js/runtime~main.7cd8ed47.js",
+    "runtime~main.js.map": "/KSMA-dapp/static/js/runtime~main.7cd8ed47.js.map",
+    "static/js/2.72a8f64f.chunk.js": "/KSMA-dapp/static/js/2.72a8f64f.chunk.js",
+    "static/js/2.72a8f64f.chunk.js.map": "/KSMA-dapp/static/js/2.72a8f64f.chunk.js.map",
+    "index.html": "/KSMA-dapp/index.html",
+    "precache-manifest.7d4732a78bc6e9baa912e493f974a30b.js": "/KSMA-dapp/precache-manifest.7d4732a78bc6e9baa912e493f974a30b.js",
+    "service-worker.js": "/KSMA-dapp/service-worker.js",
+    "static/css/main.56e9aa38.chunk.css.map": "/KSMA-dapp/static/css/main.56e9aa38.chunk.css.map",
+    "static/media/index.css": "/KSMA-dapp/static/media/Visuelt_Bold.78db67b9.ttf",
+    "static/media/claiming.md": "/KSMA-dapp/static/media/claiming.0ec9bd87.md",
+    "static/media/kusama_word.png": "/KSMA-dapp/static/media/kusama_word.3e581abc.png",
+    "static/media/overview.md": "/KSMA-dapp/static/media/overview.bea51fd0.md",
+    "static/media/security.md": "/KSMA-dapp/static/media/security.463f2fcb.md"
+  }
+}
