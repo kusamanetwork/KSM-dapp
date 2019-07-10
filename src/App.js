@@ -26,7 +26,7 @@ const Navbar = styled.div`
   align-items: center;
   justify-content: space-around;
   position: fixed;
-  
+
   color: white;
   z-index: 100;
 `;
@@ -390,8 +390,8 @@ class App extends React.Component {
                     <div>
                       <h4>Claims contract:</h4>
                       <DisabledText>
-                        0xAf885DB79f61A08Ad3341011a293a708bff85317
-                        <CopyToClipboard text="0xAf885DB79f61A08Ad3341011a293a708bff85317">
+                        0xF585E5c8C2b705c1e072c01003Bbe65CF8F57778
+                        <CopyToClipboard text="0xF585E5c8C2b705c1e072c01003Bbe65CF8F57778">
                           <DisabledButton>
                             <FontAwesomeIcon icon={faClipboard}/>
                           </DisabledButton>
