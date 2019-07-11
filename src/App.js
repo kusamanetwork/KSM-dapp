@@ -328,7 +328,7 @@ class App extends React.Component {
                     <li><a href="https://polkadot.js.org/apps/#/accounts" target="_blank">Polkadot UI</a> <b>(Recommended for most users)</b></li>
                     <li><code><a href="#">subkey</a></code> <b>(Most secure)</b></li>
                     <li><a href="https://chrome.google.com/webstore/detail/enzyme/amligljifngdnodkebecdijmhnhojohh" target="_blank">Enzyme wallet</a> <b>(Chrome only)</b></li>
-                    <li>Polkawallet</li>
+                    <li><a href="https://polkawallet.io/#download" target="_blank">Polkawallet</a></li>
                   </ul>
                   <br/>
                   <a href="#">Need help?</a>
