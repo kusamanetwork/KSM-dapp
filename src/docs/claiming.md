@@ -40,7 +40,11 @@ Another option you may consider using are `subkey` commandline utility which wil
 
 ### Polkawallet
 
-TODO
+1. Install [Polkawallet](https://polkawallet.io/). Click `Download` and select the link corresponding to the platform you are using. On android you may need to allow installing apps from external sources. On iOS, you may need to "trust" Polkawallet in the `General`>`Profiles & Device Management` > `Enterprise App` Section before running the app.
+2. Once opening the app, copy the seed phrase and store it in a safe place, don't share the seed phrase with anyone, you can use it to access your account if you forget your password or otherwise lose your keystore.
+3. Name your account and make a strong password, make sure to write it down in another place, then click `Save`.
+4. You will be asked to confirm your seed phrase - this is to make sure you have copied it somewhere safe.
+5. Click on the pink QR Code symbol, and select `Copy address` to copy your address to clipboard.
 
 ## Claiming before Kusama genesis
 
