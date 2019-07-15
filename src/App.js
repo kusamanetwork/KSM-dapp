@@ -304,14 +304,8 @@ class App extends React.Component {
       <div>
         <Navbar>
           <img src={Kusama} width='120px' height='20px'/>
-          {/* <MyLink to='#'><NavButton></NavButton></MyLink>
-          <MyLink to='/manual'><NavButton></NavButton></MyLink>
-          <MyLink to='/claims'><NavButton>Claims</NavButton></MyLink>
-          <MyLink to='/faucet'><NavButton></NavButton></MyLink>
-          <NavButton></NavButton> */}
         </Navbar>
         <Spacer/>
-        {/* <Route path='/manual' component={Manual}/> */}
         <Route
           path='/'
           render={() => (
@@ -338,7 +332,6 @@ class App extends React.Component {
                 <h4>How will you claim?</h4>
                 <MySelect onChange={this.handleSelect} defaultValue="">
                   <option value="" disabled hidden>Choose your method to claim</option>
-                  {/* <option value="Metamask">Metamask (before genesis)</option> */}
                   <option value="MyCrypto">On Ethereum (before genesis)</option>
                   <option value="On-chain" disabled>On Kusama (after genesis)</option>
                 </MySelect>
@@ -347,8 +340,8 @@ class App extends React.Component {
                     <div>
                       <h4>Claims contract:</h4>
                       <DisabledText>
-                        0x4CeBEd1F065a3bA5a4d1De38748fd87Ea1fb06B9
-                        <CopyToClipboard text="0x4CeBEd1F065a3bA5a4d1De38748fd87Ea1fb06B9">
+                        0xA7b099b5aA4F6d8209e6b58c0d5909D8ae1c00E7
+                        <CopyToClipboard text="0xA7b099b5aA4F6d8209e6b58c0d5909D8ae1c00E7">
                           <DisabledButton>
                             <FontAwesomeIcon icon={faClipboard}/>
                           </DisabledButton>

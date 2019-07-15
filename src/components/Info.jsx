@@ -48,17 +48,17 @@ class InfoBox extends React.Component {
 
     const bal = await this.props.frozenToken.methods.balanceOf(value).call();
     const claimData = await this.props.claims.methods.claims(value).call();
-    const { polkadot, index } = claimData;
+    const { pubKey, index } = claimData;
     let pAddress;
-    if (polkadot !== '0x0000000000000000000000000000000000000000000000000000000000000000') {
-      pAddress = encodeAddress(pUtil.hexToU8a(polkadot));
+    if (pubKey !== '0x0000000000000000000000000000000000000000000000000000000000000000') {
+      pAddress = encodeAddress(pUtil.hexToU8a(pubKey));
     }
     
     this.setState({
       balData: {
         bal,
         index: index || null,
-        polkadot: pAddress || null,
+        pubKey: pAddress || null,
       }
     });
   }
@@ -73,8 +73,8 @@ class InfoBox extends React.Component {
           name='balance-check'
           onChange={this.balanceCheck}
         />
-        <p><b>Address:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.polkadot : 'None'}</p>
-        <p><b>Index:</b> {(this.state.balData && this.state.balData.polkadot) ? this.state.balData.index : 'None'}</p> 
+        <p><b>Address:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.pubKey : 'None'}</p>
+        <p><b>Index:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.index : 'None'}</p> 
         <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMA</p>
       </MainBottom>
     );
