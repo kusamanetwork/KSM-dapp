@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/KSMA-dapp/static/css/main.56e9aa38.chunk.css",
-    "main.js": "/KSMA-dapp/static/js/main.c231d40d.chunk.js",
-    "main.js.map": "/KSMA-dapp/static/js/main.c231d40d.chunk.js.map",
-    "runtime~main.js": "/KSMA-dapp/static/js/runtime~main.7cd8ed47.js",
-    "runtime~main.js.map": "/KSMA-dapp/static/js/runtime~main.7cd8ed47.js.map",
-    "static/js/2.72a8f64f.chunk.js": "/KSMA-dapp/static/js/2.72a8f64f.chunk.js",
-    "static/js/2.72a8f64f.chunk.js.map": "/KSMA-dapp/static/js/2.72a8f64f.chunk.js.map",
-    "index.html": "/KSMA-dapp/index.html",
-    "precache-manifest.7d4732a78bc6e9baa912e493f974a30b.js": "/KSMA-dapp/precache-manifest.7d4732a78bc6e9baa912e493f974a30b.js",
-    "service-worker.js": "/KSMA-dapp/service-worker.js",
-    "static/css/main.56e9aa38.chunk.css.map": "/KSMA-dapp/static/css/main.56e9aa38.chunk.css.map",
-    "static/media/index.css": "/KSMA-dapp/static/media/Visuelt_Bold.78db67b9.ttf",
-    "static/media/claiming.md": "/KSMA-dapp/static/media/claiming.0ec9bd87.md",
-    "static/media/kusama_word.png": "/KSMA-dapp/static/media/kusama_word.3e581abc.png",
-    "static/media/overview.md": "/KSMA-dapp/static/media/overview.bea51fd0.md",
-    "static/media/security.md": "/KSMA-dapp/static/media/security.463f2fcb.md"
+    "main.css": "/static/css/main.f24f4f9a.chunk.css",
+    "main.js": "/static/js/main.b37b6824.chunk.js",
+    "main.js.map": "/static/js/main.b37b6824.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.86fcf535.chunk.js": "/static/js/2.86fcf535.chunk.js",
+    "static/js/2.86fcf535.chunk.js.map": "/static/js/2.86fcf535.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.06306e7a6eeb18dacfe123f599efa2cb.js": "/precache-manifest.06306e7a6eeb18dacfe123f599efa2cb.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.f24f4f9a.chunk.css.map": "/static/css/main.f24f4f9a.chunk.css.map",
+    "static/media/index.css": "/static/media/Visuelt_Bold.78db67b9.ttf",
+    "static/media/claiming.md": "/static/media/claiming.0375a7ef.md",
+    "static/media/kusama_word.png": "/static/media/kusama_word.3e581abc.png",
+    "static/media/overview.md": "/static/media/overview.bea51fd0.md",
+    "static/media/security.md": "/static/media/security.463f2fcb.md"
   }
 }
