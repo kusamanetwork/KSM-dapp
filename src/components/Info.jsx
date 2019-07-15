@@ -25,6 +25,9 @@ const MyInput = styled.input`
   padding-left: 3px;
   font-size: 13px;
   margin-bottom: 16px;
+  @media (max-width: 500px) {
+    width: 90% !important;
+  }
 `;
 
 class InfoBox extends React.Component {

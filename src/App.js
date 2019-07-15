@@ -19,15 +19,14 @@ import FrozenToken from './build/contracts/FrozenToken.json';
 // #BC0066 - Hot Pink
 
 const Navbar = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 60px;
-  background: #000;
+  background: black;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   position: fixed;
-
   color: white;
   z-index: 100;
 `;
@@ -50,11 +49,16 @@ const NavButton = styled.button`
 const Main = styled.div`
   width: 100%;
   padding: 3%;
-  background: transparent;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-wrap;
   padding-top: 0;
   margin-top: 1%;
+  @media (max-width: 750px) {
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const MainLeft = styled.div`
@@ -66,7 +70,10 @@ const MainLeft = styled.div`
   background: rgba(255,255,255,1.0);
   border-radius: 12px;
   padding: 2%;
-  padding-top: 2%;
+  @media (max-width: 750px) {
+    width: 90%;
+    margin-bottom: 3%;
+  }
 `;
 
 const MainRight = styled.div`
@@ -79,6 +86,11 @@ const MainRight = styled.div`
   border-radius: 12px;
   padding: 2%;
   padding-top: 0;
+  @media (max-width: 750px) {
+    width: 90%;
+    margin-bottom: 3%;
+    margin-top: -1%;
+  }
 `;
 
 const Spacer = styled.div`
@@ -100,6 +112,9 @@ const MyInput = styled.input`
   padding-left: 3px;
   font-size: 13px;
   margin-bottom: 16px;
+  @media (max-width: 750px) {
+    width: 90% !important;
+  }
 `;
 
 const MySelect = styled.select`
@@ -131,13 +146,16 @@ const MyButton = styled.button`
 
 const TextareaButton = styled.button`
   margin-top: -35px;
-  margin-left: 475px;
+  margin-left: 90%;
   position: absolute;
   background: black;
   color: white;
   border-color: black;
   :hover {
     cursor: pointer;
+  }
+  @media (max-width: 750px) {
+    margin-lefT: 80%;
   }
 `;
 
@@ -348,8 +366,12 @@ class App extends React.Component {
                         </CopyToClipboard>
                       </DisabledText>
                       <h4>ABI:</h4>
-                      <textarea style={{width: '100%', height: '100px', resize: 'none'}} disabled>{JSON.stringify(Claims.abi)}</textarea>
-                      <CopyToClipboard text={JSON.stringify(Claims.abi)}><TextareaButton>copy</TextareaButton></CopyToClipboard>
+                      <div style={{ position: 'relative' }}>
+                        <textarea style={{width: '100%', height: '100px', resize: 'none'}} disabled>{JSON.stringify(Claims.abi)}</textarea>
+                        <CopyToClipboard text={JSON.stringify(Claims.abi)}>
+                          <TextareaButton>copy</TextareaButton>
+                        </CopyToClipboard>
+                      </div>
                       <h4>What is your Kusama address?</h4>
                       <div>
                         <MyInput
