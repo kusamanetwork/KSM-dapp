@@ -2,7 +2,7 @@
   "name": "claims-dapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://kusamanetwork.github.io/KSMA-dapp",
+  "homepage": "https://claim.kusama.network",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
