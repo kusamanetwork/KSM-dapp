@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.f24f4f9a.chunk.css",
-    "main.js": "/static/js/main.1387524c.chunk.js",
-    "main.js.map": "/static/js/main.1387524c.chunk.js.map",
+    "main.js": "/static/js/main.b151472d.chunk.js",
+    "main.js.map": "/static/js/main.b151472d.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/js/2.35399928.chunk.js": "/static/js/2.35399928.chunk.js",
     "static/js/2.35399928.chunk.js.map": "/static/js/2.35399928.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.ea29c2a46a27e551bb3f0ff8ce2d9d3c.js": "/precache-manifest.ea29c2a46a27e551bb3f0ff8ce2d9d3c.js",
+    "precache-manifest.e67eb0afaec3a24979ca0497fb5dbcc3.js": "/precache-manifest.e67eb0afaec3a24979ca0497fb5dbcc3.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.f24f4f9a.chunk.css.map": "/static/css/main.f24f4f9a.chunk.css.map",
     "static/media/index.css": "/static/media/Visuelt_Bold.78db67b9.ttf",
-    "static/media/claiming.md": "/static/media/claiming.0375a7ef.md",
+    "static/media/claiming.md": "/static/media/claiming.38dc0755.md",
     "static/media/kusama_word.png": "/static/media/kusama_word.3e581abc.png",
     "static/media/overview.md": "/static/media/overview.bea51fd0.md",
     "static/media/security.md": "/static/media/security.463f2fcb.md"
