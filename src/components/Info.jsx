@@ -78,7 +78,7 @@ class InfoBox extends React.Component {
         />
         <p><b>Address:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.pubKey : 'None'}</p>
         <p><b>Index:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.index : 'None'}</p> 
-        <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSMA</p>
+        <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSM</p>
       </MainBottom>
     );
   }
