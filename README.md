@@ -1,4 +1,4 @@
-# KSMA DApp
+# KSM DApp
 
 Interface for the Kusama user guide and claims process.
 
@@ -21,7 +21,7 @@ The `title` will render as the side navigation button for the page, the source i
 
 ## Claims
 
-The DApp also facilitates claiming Kusama addresses. The two processes of claiming KSMA can occur before genesis or after genesis.
+The DApp also facilitates claiming Kusama addresses. The two processes of claiming KSM can occur before genesis or after genesis.
 
 - [X] Claiming before genesis on Ethereum.
 - [] Claiming after genesis on Kusama.
