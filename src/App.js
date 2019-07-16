@@ -344,7 +344,7 @@ class App extends React.Component {
                     <li><a href="https://polkawallet.io/#download" target="_blank">Polkawallet</a></li>
                   </ul>
                   <br/>
-                  <a href="https://github.com/kusamanetwork/KSM-dapp/blob/master/src/docs/claiming.md">See full step-by-step instructions.</a><br/>
+                  <a href="https://guide.kusama.network/en/latest/start/claims/">See full step-by-step instructions.</a><br/>
                   <a href="https://riot.im/app/#/room/#KSMAClaims:polkadot.builders">Need help? Join the Claims Support chat.</a>
 
                 </MainLeft>
