@@ -1,12 +1,12 @@
-# KSMA claims
+# KSM claims
 
-The Kusama network is Polkadot's R&D network :imp:. This guide will walk you through how to proceed with claiming KSMA.
+The Kusama network is Polkadot's R&D network. This guide will walk you through how to proceed with claiming KSM.
 
-In order to align Kusama with the existing DOT holders and community, if you are a DOT allocation holder you can claim the equivalent amount of Kusama tokens (ticker: KSMA). There are two ways to claim either before genesis by sending a transaction on Ethereum or after genesis by signing a message using your allocation key and making a transaction on Kusama.
+In order to align Kusama with the existing DOT holders and community, if you are a DOT allocation holder you can claim the equivalent amount of Kusama tokens (ticker: KSM). There are two ways to claim either before genesis by sending a transaction on Ethereum or after genesis by signing a message using your allocation key and making a transaction on Kusama.
 
 ## Create a Kusama account
 
-You will need a Kusama account to claim the KSMA. There are a few ways you can create one. For most users, we recommend using the [Polkadot UI](https://polkadot.js.org/apps/#/explorer) since it will allow you to store your encrypted keyfile locally.
+You will need a Kusama account to claim the KSM. There are a few ways you can create one. For most users, we recommend using the [Polkadot UI](https://polkadot.js.org/apps/#/explorer) since it will allow you to store your encrypted keyfile locally.
 
 > NOTICE: Unfortunately at this time Kusama and Substrate chains do not have hardware wallet support using the Ledger or Trezor products. Hopefully soon this will change!
 
@@ -48,9 +48,9 @@ Another option you may consider using are `subkey` commandline utility which wil
 
 ## Claiming before Kusama genesis
 
-Claiming before the Kusama genesis block means that you will start the network with the balance already in your account. It is really easy to do this using the KSMA claims DApp.
+Claiming before the Kusama genesis block means that you will start the network with the balance already in your account. It is really easy to do this using the KSM claims DApp.
 
-### Claim your KSMA with MyCrypto
+### Claim your KSM with MyCrypto
 
 MyCrypto is the option you will use if you have stored the keys to your DOT allocation on a hardware device like a Ledger Nano S or a Trezor.
 
@@ -60,13 +60,13 @@ Once you've downloaded the MyCrypto app and run it locally (run it on an airgapp
 
 Head back to the MyCrypto application and click on the Contract tab. Choose the Custom selection for the contract and copy the ABI and address of the Claims contract. The mainnet Claims contract address is 0xXXXXXXXXXXX. Click `Access`.
 
-Select the `claim` function and enter the address of the Ethereum account that holds the balance of DOT allocation for which you would like to claim KSMA.
+Select the `claim` function and enter the address of the Ethereum account that holds the balance of DOT allocation for which you would like to claim KSM.
 
 Next enter in the information that the claims DApp outputted for you. For the curious ones, this is the hex representation of your Kusama public key which is how your chosen address is derived.
 
 Unlock your wallet using your preferred method and click "Sign and Send."
 
-You can click on the link to view your transaction on Etherscan, when the transaction is mined to the network then you are finished! When the Kusama network starts you will already have the balance of KSMA in your Kusama address.
+You can click on the link to view your transaction on Etherscan, when the transaction is mined to the network then you are finished! When the Kusama network starts you will already have the balance of KSM in your Kusama address.
 
 ## Claiming after genesis
 
