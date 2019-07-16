@@ -331,7 +331,7 @@ class App extends React.Component {
               <Main>
                 <MainLeft>
                   <h1>Claim KSM</h1>
-                  <h2>Coming soon: 17 July, 4:00PM UTC</h2>
+                  <h2>Coming soon: 17 July, 4PM UTC</h2>
                   <br/>
                   <p>This DApp will walk you through the process of claiming KSM. In order to claim KSM you need to have an allocation of DOTs.</p>
                   <h2>Create a Kusama address</h2>
