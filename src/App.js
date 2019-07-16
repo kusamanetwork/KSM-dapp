@@ -339,12 +339,12 @@ class App extends React.Component {
                   <p>You will first need to create an account. This is the account that you will be claiming your KSM to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
                   <ul>
                     <li><a href="https://polkadot.js.org/apps/#/accounts" target="_blank">Polkadot UI</a> <b>(Recommended for most users)</b></li>
-                    <li><code><a href="#">subkey</a></code> <b>(Most secure)</b></li>
+                    <li><code><a href="https://guide.kusama.network/en/latest/start/claims/#using-subkey">subkey</a></code> <b>(Most secure)</b></li>
                     <li><a href="https://chrome.google.com/webstore/detail/enzyme/amligljifngdnodkebecdijmhnhojohh" target="_blank">Enzyme wallet</a> <b>(Chrome only)</b></li>
                     <li><a href="https://polkawallet.io/#download" target="_blank">Polkawallet</a></li>
                   </ul>
                   <br/>
-                  <a href="https://github.com/kusamanetwork/KSM-dapp/blob/master/src/docs/claiming.md">See full step-by-step instructions.</a><br/>
+                  <a href="https://guide.kusama.network/en/latest/start/claims/">See full step-by-step instructions.</a><br/>
                   <a href="https://riot.im/app/#/room/#KSMAClaims:polkadot.builders">Need help? Join the Claims Support chat.</a>
 
                 </MainLeft>
