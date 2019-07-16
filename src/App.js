@@ -330,12 +330,12 @@ class App extends React.Component {
             <>
               <Main>
                 <MainLeft>
-                  <h1>Claim KSMA</h1>
+                  <h1>Claim KSM</h1>
                   <br/>
-                  <p>This DApp will walk you through the process of claiming KSMA. In order to claim KSMA you need to have an allocation of DOTs.</p>
+                  <p>This DApp will walk you through the process of claiming KSM. In order to claim KSM you need to have an allocation of DOTs.</p>
                   <h2>Create a Kusama address</h2>
                   <br/>
-                  <p>You will first need to create an account. This is the account that you will be claiming your KSMA to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
+                  <p>You will first need to create an account. This is the account that you will be claiming your KSM to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
                   <ul>
                     <li><a href="https://polkadot.js.org/apps/#/accounts" target="_blank">Polkadot UI</a> <b>(Recommended for most users)</b></li>
                     <li><code><a href="#">subkey</a></code> <b>(Most secure)</b></li>
@@ -343,7 +343,8 @@ class App extends React.Component {
                     <li><a href="https://polkawallet.io/#download" target="_blank">Polkawallet</a></li>
                   </ul>
                   <br/>
-                  <a href="#">Need help?</a>
+                  <a href="https://github.com/kusamanetwork/KSM-dapp/blob/master/src/docs/claiming.md">See full step-by-step instructions.</a><br/>
+                  <a href="https://riot.im/app/#/room/#KSMAClaims:polkadot.builders">Need help? Join the Claims Support chat.</a>
 
                 </MainLeft>
                 <MainRight>
