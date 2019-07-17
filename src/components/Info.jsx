@@ -1,5 +1,5 @@
-// import { encodeAddress } from '@polkadot/keyring';
-// import * as pUtil from '@polkadot/util';
+import { encodeAddress } from '@polkadot/keyring';
+import * as pUtil from '@polkadot/util';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -52,10 +52,10 @@ class InfoBox extends React.Component {
     let bal = await this.props.frozenToken.methods.balanceOf(value).call();
     const claimData = await this.props.claims.methods.claims(value).call();
     const { pubKey, index } = claimData;
-    // let pAddress;
-    // if (pubKey !== '0x0000000000000000000000000000000000000000000000000000000000000000') {
-    //   pAddress = encodeAddress(pUtil.hexToU8a(pubKey));
-    // }
+    let kusamaAddress;
+    if (pubKey !== '0x0000000000000000000000000000000000000000000000000000000000000000') {
+      kusamaAddress = encodeAddress(pUtil.hexToU8a(pubKey), 2);
+    }
 
     bal = Number(bal) / 1000
     
@@ -63,6 +63,7 @@ class InfoBox extends React.Component {
       balData: {
         bal,
         index: index || null,
+        kusamaAddress: kusamaAddress || null,
         pubKey: pubKey || null,
       }
     });
@@ -72,12 +73,13 @@ class InfoBox extends React.Component {
     return (
       <MainBottom>
         <h2>Check your information:</h2>
-        <h4>Paste the Ethereum address to your DOT allocation below to check your public key, index and balance:</h4>
+        <h4>Paste the Ethereum address to your DOT allocation below to check your Kusama address, index and balance:</h4>
         <MyInput
           width='500'
           name='balance-check'
           onChange={this.balanceCheck}
         />
+        <p><b>Kusama address:</b> {(this.state.balData && this.state.balData.kusamaAddress) ? this.state.balData.kusamaAddress : 'None'}</p>
         <p><b>Public key:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.pubKey : 'None'}</p>
         <p><b>Index:</b> {(this.state.balData && this.state.balData.index) ? this.state.balData.index : 'None'}</p> 
         <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSM</p>

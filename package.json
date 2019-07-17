@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@polkadot/keyring": "^0.93.1",
     "@polkadot/util": "^0.93.1",
+    "bs58": "^4.0.1",
     "react": "^16.8.6",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.6",

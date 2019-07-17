@@ -1,22 +1,32 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboard, faThumbsUp, faUnlink } from '@fortawesome/free-solid-svg-icons';
 import { decodeAddress } from '@polkadot/keyring';
 import * as pUtil from '@polkadot/util';
+import bs58 from 'bs58';
 import React from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboard, faThumbsUp, faUnlink } from '@fortawesome/free-solid-svg-icons';
+
 import Web3 from 'web3';
 
-import InfoBox from './components/Info';
-import Manual from './components/Manual';
-
+// Assets
 import Kusama from './assets/kusama_word.png';
 
+// Components
+import InfoBox from './components/Info';
+
+// Smart Contracts
 import Claims from './build/contracts/Claims.json';
 import FrozenToken from './build/contracts/FrozenToken.json';
 
 // #BC0066 - Hot Pink
+
+const check = (address) => {
+  const decoded = pUtil.bufferToU8a(bs58.decode(address));
+  
+  return decoded[0] === 2;
+}
 
 const Navbar = styled.div`
   width: 100vw;
@@ -189,7 +199,6 @@ class App extends React.Component {
     correctAmendment: null,
     defaultAccount: null,
     frozenToken: null,
-    metamask: false,
     myCrypto: false,
     pubKey: null,
     showAmend: false,
@@ -221,21 +230,27 @@ class App extends React.Component {
   inputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'valid-check') {
-      if (value.length === 48) {
-        const pubKey = pUtil.u8aToHex(decodeAddress(value));
-        console.log(pubKey);
-
-        this.setState({
-          pubKey,
-          status: 'true',
-        })
-      } else {
-        if (this.state.status === 'true') {
-          this.setState({
-            status: null,
-          })
+      let pubKey, status;
+      // Check if its a properly encoding Kusama address.
+      if (!check(value)) {
+        try {
+          pUtil.u8aToHex(decodeAddress(value));
+          // It's either a Substrate or Poladot address.
+          pubKey = 'This is not a Kusama address.'
+          status = false;
+        } catch (e) {
+          pubKey = 'invalid'
+          status = false;
         }
+      } else {
+        pubKey = pUtil.u8aToHex(decodeAddress(value));
+        status = true;
       }
+
+      this.setState({
+        pubKey,
+        status,
+      })
     }
 
     this.setState({
@@ -247,62 +262,10 @@ class App extends React.Component {
     const { value } = e.target;
     if (value === 'MyCrypto') {
       this.setState({
-        metamask: false,
         myCrypto: true,
-      });
-    } else {
-      this.setState({
-        metamask: true,
-        myCrypto: false,
       });
     }
   }
-
-  // tryClaim = async () => {
-  //   if (!Boolean(this.state.status)) {
-  //     return;
-  //   }
-  //   if (!this.state.claims) {
-  //     return;
-  //   }
-
-  //   const { claims, defaultAccount } = this.state;
-
-  //   let eth;
-  //   if (Boolean(this.state.correctAmendment)) {
-  //     eth = this.state.amendedAddress;
-  //   } else {
-  //     eth = defaultAccount;
-  //   }
-
-  //   const decoded = pUtil.u8aToHex(decodeAddress(this.state['valid-check']));
-
-  //   const txResult = await claims.methods.claim(eth, decoded).send({
-  //     from: defaultAccount,
-  //     gas: 1500000,
-  //     gasPrice: 20000,
-  //   });
-
-  //   console.group(txResult);
-  // }
-
-  // validateAmend = async (e) => {
-  //   const { value } = e.target;
-  //   if (!this.state.claims) {
-  //     return;
-  //   }
-
-  //   const { claims, defaultAccount } = this.state;
-
-  //   const amend = await claims.methods.amended(value).call();
-
-  //   if (amend === defaultAccount) {
-  //     this.setState({
-  //       correctAmendment: 'true',
-  //       amendedAddress: value,
-  //     })
-  //   }
-  // }
 
   render() {
     if (this.state.web3 !== null && !this.state.claims && !this.state.frozenToken) {
@@ -363,14 +326,10 @@ class App extends React.Component {
                       <div style={{ position: 'relative' }}>
                         <textarea style={{width: '100%', height: '100px', resize: 'none'}} disabled>{JSON.stringify(Claims.abi)}</textarea>
                         <CopyToClipboard text={JSON.stringify(Claims.abi)}>
-                        {/* <DisabledButton>
-                          <FontAwesomeIcon icon={faClipboard}/>
-                        </DisabledButton> */}
                           <TextareaButton>click to copy</TextareaButton>
                         </CopyToClipboard>
                       </div>
-                      <h4>What is your Substrate generic address?</h4>
-                      <p style= {{ color: 'red' }}><b>Note: Your eventual Kusama address will be different.</b></p>
+                      <h4>What is your Kusama address?</h4>
                       <div>
                         <MyInput
                           width='450'
