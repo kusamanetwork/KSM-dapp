@@ -369,7 +369,8 @@ class App extends React.Component {
                           <TextareaButton>click to copy</TextareaButton>
                         </CopyToClipboard>
                       </div>
-                      <h4>What is your Kusama address?</h4>
+                      <h4>What is your Substrate generic address?</h4>
+                      <p style= {{ color: 'red' }}><b>Note: Your eventual Kusama address will be different.</b></p>
                       <div>
                         <MyInput
                           width='450'
