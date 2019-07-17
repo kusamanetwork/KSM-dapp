@@ -72,13 +72,13 @@ class InfoBox extends React.Component {
     return (
       <MainBottom>
         <h2>Check your information:</h2>
-        <h4>Paste address to your DOT allocation below to check your Kusama address, index and balance:</h4>
+        <h4>Paste the Ethereum address to your DOT allocation below to check your Kusama address, index and balance:</h4>
         <MyInput
           width='500'
           name='balance-check'
           onChange={this.balanceCheck}
         />
-        <p><b>Address:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.pubKey : 'None'}</p>
+        <p><b>Kusama address:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.pubKey : 'None'}</p>
         <p><b>Index:</b> {(this.state.balData && this.state.balData.index) ? this.state.balData.index : 'None'}</p> 
         <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSM</p>
       </MainBottom>
