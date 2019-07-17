@@ -4,8 +4,8 @@
 
 The DApp facilitates claiming Kusama addresses. The two processes of claiming KSM can occur before genesis or after genesis.
 
-- [X] [Claiming before genesis on Ethereum](claim-on-ethereum)
-- [ ] [Claiming after genesis on Kusama](claim-on-kusama)
+- [X] [Claiming before genesis on Ethereum](#claim-on-ethereum)
+- [ ] [Claiming after genesis on Kusama](#claim-on-kusama)
 
 ### Claim on Ethereum
 
