@@ -197,28 +197,19 @@ class App extends React.Component {
   }
 
   componentDidMount = async () => {
-    window.addEventListener('load', async () => {
-      let w3, account;
-      if (typeof window.web3 !== 'undefined') {
-        w3 = new Web3(window.web3.currentProvider);
-        account = (await w3.eth.getAccounts())[0];
-      } else {
-        console.log('No web3? You should consider trying MetaMask!')
-        w3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-      }
 
-      this.setState({
-        defaultAccount: account,
-        web3: w3,
-      });
-    })
+  const w3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/7121204aac9a45dcb9c2cc825fb85159"));
+
+  this.setState({
+    web3: w3,
+  });
+
   }
 
   initializeContracts = async (web3) => {
-    const netId = await web3.eth.net.getId();
 
-    const frozenToken = new web3.eth.Contract(FrozenToken.abi, FrozenToken.networks[netId.toString()].address);
-    const claims = new web3.eth.Contract(Claims.abi, Claims.networks[netId.toString()].address);
+    const frozenToken = new web3.eth.Contract(FrozenToken.abi, "0xb59f67A8BfF5d8Cd03f6AC17265c550Ed8F33907");
+    const claims = new web3.eth.Contract(Claims.abi, "0x9a1B58399EdEBd0606420045fEa0347c24fB86c2");
   
     this.setState({
       claims,
@@ -266,54 +257,54 @@ class App extends React.Component {
     }
   }
 
-  tryClaim = async () => {
-    if (!Boolean(this.state.status)) {
-      return;
-    }
-    if (!this.state.claims) {
-      return;
-    }
+  // tryClaim = async () => {
+  //   if (!Boolean(this.state.status)) {
+  //     return;
+  //   }
+  //   if (!this.state.claims) {
+  //     return;
+  //   }
 
-    const { claims, defaultAccount } = this.state;
+  //   const { claims, defaultAccount } = this.state;
 
-    let eth;
-    if (Boolean(this.state.correctAmendment)) {
-      eth = this.state.amendedAddress;
-    } else {
-      eth = defaultAccount;
-    }
+  //   let eth;
+  //   if (Boolean(this.state.correctAmendment)) {
+  //     eth = this.state.amendedAddress;
+  //   } else {
+  //     eth = defaultAccount;
+  //   }
 
-    const decoded = pUtil.u8aToHex(decodeAddress(this.state['valid-check']));
+  //   const decoded = pUtil.u8aToHex(decodeAddress(this.state['valid-check']));
 
-    const txResult = await claims.methods.claim(eth, decoded).send({
-      from: defaultAccount,
-      gas: 1500000,
-      gasPrice: 20000,
-    });
+  //   const txResult = await claims.methods.claim(eth, decoded).send({
+  //     from: defaultAccount,
+  //     gas: 1500000,
+  //     gasPrice: 20000,
+  //   });
 
-    console.group(txResult);
-  }
+  //   console.group(txResult);
+  // }
 
-  validateAmend = async (e) => {
-    const { value } = e.target;
-    if (!this.state.claims) {
-      return;
-    }
+  // validateAmend = async (e) => {
+  //   const { value } = e.target;
+  //   if (!this.state.claims) {
+  //     return;
+  //   }
 
-    const { claims, defaultAccount } = this.state;
+  //   const { claims, defaultAccount } = this.state;
 
-    const amend = await claims.methods.amended(value).call();
+  //   const amend = await claims.methods.amended(value).call();
 
-    if (amend === defaultAccount) {
-      this.setState({
-        correctAmendment: 'true',
-        amendedAddress: value,
-      })
-    }
-  }
+  //   if (amend === defaultAccount) {
+  //     this.setState({
+  //       correctAmendment: 'true',
+  //       amendedAddress: value,
+  //     })
+  //   }
+  // }
 
   render() {
-    if (this.state.web3 !== null) {
+    if (this.state.web3 !== null && !this.state.claims && !this.state.frozenToken) {
       this.initializeContracts(this.state.web3);
     }
 
@@ -360,8 +351,8 @@ class App extends React.Component {
                     <div>
                       <h4>Claims contract:</h4>
                       <DisabledText>
-                        0xA7b099b5aA4F6d8209e6b58c0d5909D8ae1c00E7
-                        <CopyToClipboard text="0xA7b099b5aA4F6d8209e6b58c0d5909D8ae1c00E7">
+                        0x9a1B58399EdEBd0606420045fEa0347c24fB86c2
+                        <CopyToClipboard text="0x9a1B58399EdEBd0606420045fEa0347c24fB86c2">
                           <DisabledButton>
                             <FontAwesomeIcon icon={faClipboard}/>
                           </DisabledButton>

@@ -49,13 +49,15 @@ class InfoBox extends React.Component {
       return;
     }
 
-    const bal = await this.props.frozenToken.methods.balanceOf(value).call();
+    let bal = await this.props.frozenToken.methods.balanceOf(value).call();
     const claimData = await this.props.claims.methods.claims(value).call();
     const { pubKey, index } = claimData;
     let pAddress;
     if (pubKey !== '0x0000000000000000000000000000000000000000000000000000000000000000') {
       pAddress = encodeAddress(pUtil.hexToU8a(pubKey));
     }
+
+    bal = Number(bal) / 1000
     
     this.setState({
       balData: {
