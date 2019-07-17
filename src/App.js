@@ -235,7 +235,7 @@ class App extends React.Component {
       if (!check(value)) {
         try {
           pUtil.u8aToHex(decodeAddress(value));
-          // It's either a Substrate or Poladot address.
+          // It's either a Substrate or Polkadot address.
           pubKey = 'This is not a Kusama address.'
           status = false;
         } catch (e) {
@@ -244,11 +244,11 @@ class App extends React.Component {
         }
       } else {
         try {
-          pubKey = pUtil.u8aToHex(decodeAddress(value));
+          pubKey = pUtil.u8aToHex(decodeAddress(value, false,  2));
           status = true;
         } catch (e) {
           pubKey = 'invalid';
-          status = 'false';
+          status = false;
         }
       }
 
