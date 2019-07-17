@@ -145,9 +145,6 @@ const MyButton = styled.button`
 `;
 
 const TextareaButton = styled.button`
-  margin-top: -35px;
-  margin-left: 90%;
-  position: absolute;
   background: black;
   color: white;
   border-color: black;
@@ -155,7 +152,7 @@ const TextareaButton = styled.button`
     cursor: pointer;
   }
   @media (max-width: 750px) {
-    margin-lefT: 80%;
+    margin-left: 80%;
   }
 `;
 
@@ -178,6 +175,10 @@ const DisabledText = styled.div`
 const DisabledButton = styled.button`
   position: absolute;
   right: 0;
+  :hover {
+    cursor: pointer;
+    background: #fff;
+  }
 `;
 
 
@@ -322,7 +323,6 @@ class App extends React.Component {
               <Main>
                 <MainLeft>
                   <h1>Claim KSM</h1>
-                  <h2>Coming soon</h2>
                   <br/>
                   <p>This DApp will walk you through the process of claiming KSM. In order to claim KSM you need to have an allocation of DOTs.</p>
                   <h2>Create a Kusama address</h2>
@@ -335,15 +335,16 @@ class App extends React.Component {
                     <li><a href="https://polkawallet.io/#download" target="_blank">Polkawallet</a></li>
                   </ul>
                   <br/>
-                  <a href="https://guide.kusama.network/en/latest/start/claims/">See full step-by-step instructions.</a><br/>
-                  <a href="https://riot.im/app/#/room/#KSMAClaims:polkadot.builders">Need help? Join the Claims Support chat.</a>
+                  <br/>
+                  <a href="https://guide.kusama.network/en/latest/start/claims/" target="_blank">See full step-by-step instructions.</a><br/>
+                  <a href="https://riot.im/app/#/room/#KSMAClaims:polkadot.builders" target="_blank">Need help? Join the Claims Support chat.</a>
 
                 </MainLeft>
                 <MainRight>
                 <h4>How will you claim?</h4>
                 <MySelect onChange={this.handleSelect} defaultValue="">
                   <option value="" disabled hidden>Choose your method to claim</option>
-                  <option value="MyCrypto" disabled>On Ethereum (before genesis)</option>
+                  <option value="MyCrypto">On Ethereum (before genesis)</option>
                   <option value="On-chain" disabled>On Kusama (after genesis)</option>
                 </MySelect>
                 {
@@ -362,7 +363,10 @@ class App extends React.Component {
                       <div style={{ position: 'relative' }}>
                         <textarea style={{width: '100%', height: '100px', resize: 'none'}} disabled>{JSON.stringify(Claims.abi)}</textarea>
                         <CopyToClipboard text={JSON.stringify(Claims.abi)}>
-                          <TextareaButton>copy</TextareaButton>
+                        {/* <DisabledButton>
+                          <FontAwesomeIcon icon={faClipboard}/>
+                        </DisabledButton> */}
+                          <TextareaButton>click to copy</TextareaButton>
                         </CopyToClipboard>
                       </div>
                       <h4>What is your Kusama address?</h4>
@@ -383,6 +387,9 @@ class App extends React.Component {
                           </DisabledButton>
                         </CopyToClipboard>
                       </DisabledText>
+                      <br />
+                      <p>You will need to <a href="https://github.com/MyCryptoHQ/MyCrypto/releases" target="_blank">download</a> and use MyCrypto locally to make this transaction.</p>
+                      <a href="https://guide.kusama.network/en/latest/start/dot-holders/" target="_blank">Instructions for DOT holders.</a><br/>
                     </div>
                 }
                 </MainRight>
