@@ -243,8 +243,13 @@ class App extends React.Component {
           status = false;
         }
       } else {
-        pubKey = pUtil.u8aToHex(decodeAddress(value));
-        status = true;
+        try {
+          pubKey = pUtil.u8aToHex(decodeAddress(value));
+          status = true;
+        } catch (e) {
+          pubKey = 'invalid';
+          status = 'false';
+        }
       }
 
       this.setState({
