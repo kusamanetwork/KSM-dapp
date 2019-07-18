@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard, faThumbsUp, faUnlink } from '@fortawesome/free-solid-svg-icons';
-import { decodeAddress } from '@polkadot/keyring';
+import { decodeAddress, encodeAddress } from '@polkadot/keyring';
 import * as pUtil from '@polkadot/util';
 import bs58 from 'bs58';
 import React from 'react';
@@ -230,29 +230,34 @@ class App extends React.Component {
   inputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'valid-check') {
-      let pubKey, status;
+      let notice, pubKey, status;
       // Check if its a properly encoding Kusama address.
       if (!check(value)) {
         try {
-          pUtil.u8aToHex(decodeAddress(value));
+          pubKey = pUtil.u8aToHex(decodeAddress(value));
           // It's either a Substrate or Polkadot address.
-          pubKey = 'This is not a Kusama address.'
-          status = false;
+          // pubKey = 'This is not a Kusama address.'
+          notice = true;
+          status = true;
         } catch (e) {
           pubKey = 'invalid'
+          notice = false;
           status = false;
         }
       } else {
         try {
           pubKey = pUtil.u8aToHex(decodeAddress(value, false,  2));
+          notice = false;
           status = true;
         } catch (e) {
           pubKey = 'invalid';
+          notice = false;
           status = false;
         }
       }
 
       this.setState({
+        notice,
         pubKey,
         status,
       })
@@ -334,7 +339,7 @@ class App extends React.Component {
                           <TextareaButton>click to copy</TextareaButton>
                         </CopyToClipboard>
                       </div>
-                      <h4>What is your Kusama address?</h4>
+                      <h4>What is your Kusama or Substrate address?</h4>
                       <div>
                         <MyInput
                           width='450'
@@ -343,6 +348,10 @@ class App extends React.Component {
                         />
                         {' '}<SucceedIcon icon={Boolean(this.state.status) ? faThumbsUp : faUnlink} status={this.state.status}/>
                       </div>
+                      {
+                        this.state.notice &&
+                          <p style ={{ color: 'red' }}>This is a Substrate address. Your Kusama address will be: {encodeAddress(pUtil.hexToU8a(this.state.pubKey), 2)}</p>
+                      }
                       <p>Public Key:</p>
                       <DisabledText>
                         {this.state.pubKey || ''}
