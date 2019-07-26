@@ -20,7 +20,11 @@ import InfoBox from './components/Info';
 import Claims from './build/contracts/Claims.json';
 import FrozenToken from './build/contracts/FrozenToken.json';
 
-// #BC0066 - Hot Pink
+// Colors
+const HotPink = '#BC0066';
+
+// Kusama Claim Prefix
+const KusamaClaimPrefix = 'Pay KSM to the Kusama account: ';
 
 const check = (address) => {
   const decoded = pUtil.bufferToU8a(bs58.decode(address));
@@ -182,9 +186,23 @@ const DisabledText = styled.div`
   position: relative;
 `;
 
+const DisabledTextPost = styled(DisabledText)`
+  height: 75px !important;
+`;
+
 const DisabledButton = styled.button`
   position: absolute;
   right: 0;
+  :hover {
+    cursor: pointer;
+    background: #fff;
+  }
+`;
+
+const DisabledButtonPost = styled.button`
+  position: absolute;
+  right: 0;
+  bottom: 0;
   :hover {
     cursor: pointer;
     background: #fff;
@@ -199,6 +217,7 @@ class App extends React.Component {
     correctAmendment: null,
     defaultAccount: null,
     frozenToken: null,
+    kusama: false,
     myCrypto: false,
     pubKey: null,
     showAmend: false,
@@ -273,6 +292,13 @@ class App extends React.Component {
     if (value === 'MyCrypto') {
       this.setState({
         myCrypto: true,
+        kusama: false,
+      });
+    }
+    if (value ==='Kusama') {
+      this.setState({
+        myCrypto: false,
+        kusama: true,
       });
     }
   }
@@ -318,7 +344,7 @@ class App extends React.Component {
                 <MySelect onChange={this.handleSelect} defaultValue="">
                   <option value="" disabled hidden>Choose your method to claim</option>
                   <option value="MyCrypto">On Ethereum (before genesis)</option>
-                  <option value="On-chain" disabled>On Kusama (after genesis)</option>
+                  <option value="Kusama">On Kusama (after genesis)</option>
                 </MySelect>
                 {
                   this.state.myCrypto &&
@@ -365,6 +391,35 @@ class App extends React.Component {
                       <p>You will need to <a href="https://github.com/MyCryptoHQ/MyCrypto/releases" target="_blank">download</a> and use MyCrypto locally to make this transaction.</p>
                       <a href="https://guide.kusama.network/en/latest/start/dot-holders/" target="_blank">Instructions for DOT holders.</a><br/>
                     </div>
+                }
+                {
+                  this.state.kusama &&
+                  <div>
+                    <h4>Hello World</h4>
+                    <h4>What is your Kusama or Substrate address?</h4>
+                    <div>
+                      <MyInput
+                        width='450'
+                        name='valid-check'
+                        onChange={this.inputChange}
+                      />
+                      {' '}<SucceedIcon icon={Boolean(this.state.status) ? faThumbsUp : faUnlink} status={this.state.status}/>
+                    </div>
+                    {
+                      this.state.notice &&
+                        <p style ={{ color: 'red' }}>This is a Substrate address. Your Kusama address will be: {encodeAddress(pUtil.hexToU8a(this.state.pubKey), 2)}</p>
+                    }
+                    <p>Message to sign:</p>
+                    <DisabledTextPost>
+                      {this.state.pubKey ? KusamaClaimPrefix + this.state.pubKey : ''}
+                      <CopyToClipboard text={this.state.pubKey ? KusamaClaimPrefix + this.state.pubKey : ''}>
+                        <DisabledButtonPost>
+                          <FontAwesomeIcon icon={faClipboard}/>
+                        </DisabledButtonPost>
+                      </CopyToClipboard>
+                    </DisabledTextPost>
+                    <h4>Copy this to MyCrypto and sign with your Ethereum account holding DOT indicators!</h4>
+                  </div>
                 }
                 </MainRight>
               </Main>
