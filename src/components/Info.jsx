@@ -33,12 +33,13 @@ const MyInput = styled.input`
 class InfoBox extends React.Component {
 
   state = {
+    amended: false,
     balData: null,
   }
 
 
   balanceCheck = async (e) => {
-    const { value } = e.target;
+    let { value } = e.target;
 
     if (value.length !== 42) {
       // Better ethereum address validity check.
@@ -47,6 +48,22 @@ class InfoBox extends React.Component {
     }
     if (!this.props.frozenToken || !this.props.claims) {
       return;
+    }
+
+    const logs = await this.props.claims.getPastEvents('Amended', {
+      fromBlock: '8167892',
+      toBlock: 'latest',
+      filter: {
+        amendedTo: [value],
+      }
+    });
+
+    console.log(logs);
+    
+    let amended = false;
+    if (logs && logs.length && value !== '0x00b46c2526e227482e2EbB8f4C69E4674d262E75') {
+      value = logs[0].returnValues.original;
+      amended = logs[0].returnValues.original;
     }
 
     let bal = await this.props.frozenToken.methods.balanceOf(value).call();
@@ -60,6 +77,7 @@ class InfoBox extends React.Component {
     bal = Number(bal) / 1000
     
     this.setState({
+      amended,
       balData: {
         bal,
         index: index || null,
@@ -79,6 +97,10 @@ class InfoBox extends React.Component {
           name='balance-check'
           onChange={this.balanceCheck}
         />
+        {
+          this.state.amended &&
+          <p><b>Amended for:</b>{this.state.balData ? this.state.amended : ''}</p>
+        }
         <p><b>Kusama address:</b> {(this.state.balData && this.state.balData.kusamaAddress) ? this.state.balData.kusamaAddress : 'None'}</p>
         <p><b>Public key:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.pubKey : 'None'}</p>
         <p><b>Index:</b> {(this.state.balData && this.state.balData.index) ? this.state.balData.index : 'None'}</p> 
