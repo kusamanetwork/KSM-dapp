@@ -58,8 +58,6 @@ class InfoBox extends React.Component {
       }
     });
 
-    console.log(logs);
-    
     let amended = false;
     if (logs && logs.length && value !== '0x00b46c2526e227482e2EbB8f4C69E4674d262E75') {
       value = logs[0].returnValues.original;
