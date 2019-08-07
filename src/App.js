@@ -298,6 +298,7 @@ class App extends React.Component {
                   <h1>Claim KSM</h1>
                   <br/>
                   <p>This DApp will walk you through the process of claiming KSM. In order to claim KSM you need to have an allocation of DOTs.</p>
+                  <p>Using other processes to claim KSM is not recommended. </p>
                   <h2>Create a Kusama address</h2>
                   <br/>
                   <p>You will first need to create an account. This is the account that you will be claiming your KSM to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
