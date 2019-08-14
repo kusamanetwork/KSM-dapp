@@ -35,6 +35,7 @@ class InfoBox extends React.Component {
   state = {
     amended: false,
     balData: null,
+    noBalance: false,
   }
 
 
@@ -43,7 +44,7 @@ class InfoBox extends React.Component {
 
     if (value.length !== 42) {
       // Better ethereum address validity check.
-      console.log(value);
+      // console.log(value);
       return;
     }
     if (!this.props.frozenToken || !this.props.claims) {
@@ -64,7 +65,27 @@ class InfoBox extends React.Component {
       amended = logs[0].returnValues.original;
     }
 
+    const vested = await this.props.claims.getPastEvents('Vested', {
+      fromBlock: '8167892',
+      toBlock: 'latest',
+      filter: {
+        eth: [value],
+      }
+    });
+
+    let vestingAmt;
+    if (vested && vested.length) {
+      vestingAmt = vested[0].returnValues.amount;
+    }
+
     let bal = await this.props.frozenToken.methods.balanceOf(value).call();
+    if (Number(bal) === 0) {
+      this.setState({
+        noBalance: true,
+      });
+      return;
+    };
+
     const claimData = await this.props.claims.methods.claims(value).call();
     const { pubKey, index } = claimData;
     let kusamaAddress;
@@ -72,7 +93,11 @@ class InfoBox extends React.Component {
       kusamaAddress = encodeAddress(pUtil.hexToU8a(pubKey), 2);
     }
 
-    bal = Number(bal) / 1000
+    // Normalization
+    bal = Number(bal) / 1000;
+    if (vestingAmt) {
+      vestingAmt = Number(vestingAmt) / 1000;
+    }
     
     this.setState({
       amended,
@@ -81,11 +106,17 @@ class InfoBox extends React.Component {
         index: index || null,
         kusamaAddress: kusamaAddress || null,
         pubKey: pubKey || null,
-      }
+        vested: vestingAmt,
+      },
+      noBalance: false,
     });
   }
 
   render() {
+    // Collect the data here.
+    const { amended, balData, noBalance } = this.state;
+    const claimed = balData && balData.pubKey !== '0x0000000000000000000000000000000000000000000000000000000000000000' && balData.bal !== 0;
+
     return (
       <MainBottom>
         <h2>Check your information:</h2>
@@ -96,13 +127,18 @@ class InfoBox extends React.Component {
           onChange={this.balanceCheck}
         />
         {
-          this.state.amended &&
-          <p><b>Amended for:</b>{this.state.balData ? this.state.amended : ''}</p>
+          noBalance &&
+            <p>No associated DOT balance for this Ethereum account.</p>
         }
-        <p><b>Kusama address:</b> {(this.state.balData && this.state.balData.kusamaAddress) ? this.state.balData.kusamaAddress : 'None'}</p>
-        <p><b>Public key:</b> {(this.state.balData && this.state.balData.pubKey) ? this.state.balData.pubKey : 'None'}</p>
-        <p><b>Index:</b> {(this.state.balData && this.state.balData.index) ? this.state.balData.index : 'None'}</p> 
-        <p><b>Balance:</b> {this.state.balData ? this.state.balData.bal : '0'} KSM</p>
+
+        {
+          amended &&
+          <p><b>Amended for:</b>{balData ? amended : ''}</p>
+        }
+        <p><b>Kusama address:</b> {(balData && balData.kusamaAddress) ? (claimed ? balData.kusamaAddress : 'Not claimed') : 'None'}</p>
+        <p><b>Public key:</b> {(balData && balData.pubKey) ? (claimed ? balData.pubKey : 'Not claimed') : 'None'}</p>
+        <p><b>Index:</b> {(balData && balData.index) ? (claimed ? balData.index : 'Not claimed') : 'None'}</p> 
+        <p><b>Balance:</b> {balData ? balData.bal : '0'} KSM {balData && balData.vested ? `(${balData.vested} vested)` : ''}</p>
       </MainBottom>
     );
   }
