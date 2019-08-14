@@ -43,8 +43,6 @@ class InfoBox extends React.Component {
     let { value } = e.target;
 
     if (value.length !== 42) {
-      // Better ethereum address validity check.
-      // console.log(value);
       return;
     }
     if (!this.props.frozenToken || !this.props.claims) {
@@ -135,7 +133,7 @@ class InfoBox extends React.Component {
           amended &&
           <p><b>Amended for:</b>{balData ? amended : ''}</p>
         }
-        <p><b>Kusama address:</b> {(balData && balData.kusamaAddress) ? (claimed ? balData.kusamaAddress : 'Not claimed') : 'None'}</p>
+        <p><b>Kusama address:</b> {(balData && balData.pubKey) ? (claimed ? balData.kusamaAddress : 'Not claimed') : 'None'}</p>
         <p><b>Public key:</b> {(balData && balData.pubKey) ? (claimed ? balData.pubKey : 'Not claimed') : 'None'}</p>
         <p><b>Index:</b> {(balData && balData.index) ? (claimed ? balData.index : 'Not claimed') : 'None'}</p> 
         <p><b>Balance:</b> {balData ? balData.bal : '0'} KSM {balData && balData.vested ? `(${balData.vested} vested)` : ''}</p>
