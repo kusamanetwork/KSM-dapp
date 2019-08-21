@@ -24,7 +24,7 @@ import FrozenToken from './build/contracts/FrozenToken.json';
 const HotPink = '#BC0066';
 
 // Kusama Claim Prefix
-const KusamaClaimPrefix = 'Pay KSM to the Kusama account: ';
+const KusamaClaimPrefix = 'Pay KSMs to the Kusama account: ';
 
 const check = (address) => {
   const decoded = pUtil.bufferToU8a(bs58.decode(address));
@@ -343,7 +343,7 @@ class App extends React.Component {
                 <h4>How will you claim?</h4>
                 <MySelect onChange={this.handleSelect} defaultValue="">
                   <option value="" disabled hidden>Choose your method to claim</option>
-                  <option value="MyCrypto">On Ethereum (before genesis)</option>
+                  <option value="MyCrypto" disabled>On Ethereum (before genesis)</option>
                   <option value="Kusama">On Kusama (after genesis)</option>
                 </MySelect>
                 {
