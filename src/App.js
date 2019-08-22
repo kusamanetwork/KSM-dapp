@@ -186,23 +186,9 @@ const DisabledText = styled.div`
   position: relative;
 `;
 
-const DisabledTextPost = styled(DisabledText)`
-  height: 75px !important;
-`;
-
 const DisabledButton = styled.button`
   position: absolute;
   right: 0;
-  :hover {
-    cursor: pointer;
-    background: #fff;
-  }
-`;
-
-const DisabledButtonPost = styled.button`
-  position: absolute;
-  right: 0;
-  bottom: 0;
   :hover {
     cursor: pointer;
     background: #fff;
@@ -217,7 +203,6 @@ class App extends React.Component {
     correctAmendment: null,
     defaultAccount: null,
     frozenToken: null,
-    kusama: false,
     myCrypto: false,
     pubKey: null,
     showAmend: false,
@@ -292,13 +277,6 @@ class App extends React.Component {
     if (value === 'MyCrypto') {
       this.setState({
         myCrypto: true,
-        kusama: false,
-      });
-    }
-    if (value ==='Kusama') {
-      this.setState({
-        myCrypto: false,
-        kusama: true,
       });
     }
   }
@@ -324,6 +302,7 @@ class App extends React.Component {
                   <h1>Claim KSM</h1>
                   <br/>
                   <p>This DApp will walk you through the process of claiming KSM. In order to claim KSM you need to have an allocation of DOTs.</p>
+                  <p>Using other processes to claim KSM is not recommended. </p>
                   <h2>Create a Kusama address</h2>
                   <br/>
                   <p>You will first need to create an account. This is the account that you will be claiming your KSM to, so make sure to extra precautions to keep it secure. For some tips on keeping your key safe, <a href='#'>see here</a>. Create an account using one of the following methods:</p>
@@ -343,8 +322,8 @@ class App extends React.Component {
                 <h4>How will you claim?</h4>
                 <MySelect onChange={this.handleSelect} defaultValue="">
                   <option value="" disabled hidden>Choose your method to claim</option>
-                  <option value="MyCrypto" disabled>On Ethereum (before genesis)</option>
-                  <option value="Kusama">On Kusama (after genesis)</option>
+                  <option value="MyCrypto">On Ethereum (before genesis)</option>
+                  <option value="On-chain" disabled>On Kusama (after genesis)</option>
                 </MySelect>
                 {
                   this.state.myCrypto &&
