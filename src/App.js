@@ -24,7 +24,7 @@ import FrozenToken from './build/contracts/FrozenToken.json';
 const HotPink = '#BC0066';
 
 // Kusama Claim Prefix
-const KusamaClaimPrefix = 'Pay KSMs to the Kusama account: ';
+const KusamaClaimPrefix = 'Pay KSMs to the Kusama account:';
 
 const check = (address) => {
   const decoded = pUtil.bufferToU8a(bs58.decode(address));
@@ -395,30 +395,7 @@ class App extends React.Component {
                 {
                   this.state.kusama &&
                   <div>
-                    <h4>Hello World</h4>
-                    <h4>What is your Kusama or Substrate address?</h4>
-                    <div>
-                      <MyInput
-                        width='450'
-                        name='valid-check'
-                        onChange={this.inputChange}
-                      />
-                      {' '}<SucceedIcon icon={Boolean(this.state.status) ? faThumbsUp : faUnlink} status={this.state.status}/>
-                    </div>
-                    {
-                      this.state.notice &&
-                        <p style ={{ color: 'red' }}>This is a Substrate address. Your Kusama address will be: {encodeAddress(pUtil.hexToU8a(this.state.pubKey), 2)}</p>
-                    }
-                    <p>Message to sign:</p>
-                    <DisabledTextPost>
-                      {this.state.pubKey ? KusamaClaimPrefix + this.state.pubKey : ''}
-                      <CopyToClipboard text={this.state.pubKey ? KusamaClaimPrefix + this.state.pubKey : ''}>
-                        <DisabledButtonPost>
-                          <FontAwesomeIcon icon={faClipboard}/>
-                        </DisabledButtonPost>
-                      </CopyToClipboard>
-                    </DisabledTextPost>
-                    <h4>Copy this to MyCrypto and sign with your Ethereum account holding DOT indicators!</h4>
+                    <h4>Please claim your KSMs by using the Polkadot JS <a href="https://polkadot.js.org/apps/#/claims">Claims app</a>. If you need help please refer to the Kusama <a href="https://guide.kusama.network/en/latest/start/dot-holders/">guide</a>.</h4>
                   </div>
                 }
                 </MainRight>
