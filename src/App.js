@@ -20,7 +20,11 @@ import InfoBox from './components/Info';
 import Claims from './build/contracts/Claims.json';
 import FrozenToken from './build/contracts/FrozenToken.json';
 
-// #BC0066 - Hot Pink
+// Colors
+const HotPink = '#BC0066';
+
+// Kusama Claim Prefix
+const KusamaClaimPrefix = 'Pay KSMs to the Kusama account:';
 
 const check = (address) => {
   const decoded = pUtil.bufferToU8a(bs58.decode(address));
@@ -367,6 +371,12 @@ class App extends React.Component {
                       <p>You will need to <a href="https://github.com/MyCryptoHQ/MyCrypto/releases" target="_blank">download</a> and use MyCrypto locally to make this transaction.</p>
                       <a href="https://guide.kusama.network/en/latest/start/dot-holders/" target="_blank">Instructions for DOT holders.</a><br/>
                     </div>
+                }
+                {
+                  this.state.kusama &&
+                  <div>
+                    <h4>Please claim your KSMs by using the Polkadot JS <a href="https://polkadot.js.org/apps/#/claims">Claims app</a>. If you need help please refer to the Kusama <a href="https://guide.kusama.network/en/latest/start/dot-holders/">guide</a>.</h4>
+                  </div>
                 }
                 </MainRight>
               </Main>
