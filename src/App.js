@@ -315,12 +315,13 @@ class App extends React.Component {
 
                 </MainLeft>
                 <MainRight>
-                <h4>How will you claim?</h4>
+                  <h4>Claims temporarily disabled while Kusama is being launched.</h4>
+                {/* <h4>How will you claim?</h4>
                 <MySelect onChange={this.handleSelect} defaultValue="">
                   <option value="" disabled hidden>Choose your method to claim</option>
-                  <option value="MyCrypto">On Ethereum (before genesis)</option>
+                  <option value="MyCrypto" disabled>On Ethereum (before genesis)</option>
                   <option value="On-chain" disabled>On Kusama (after genesis)</option>
-                </MySelect>
+                </MySelect> */}
                 {
                   this.state.myCrypto &&
                     <div>
