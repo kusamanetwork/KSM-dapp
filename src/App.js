@@ -319,7 +319,7 @@ class App extends React.Component {
 
                 </MainLeft>
                 <MainRight>
-                  <h4>Claims temporarily disabled while Kusama is being launched.</h4>
+                  <h4>Please claim your KSMs by using the Polkadot JS <a href="https://polkadot.js.org/apps/#/claims">Claims app</a>. If you need help please refer to the Kusama <a href="https://guide.kusama.network/en/latest/start/dot-holders/">guide</a>.</h4>
                 {/* <h4>How will you claim?</h4>
                 <MySelect onChange={this.handleSelect} defaultValue="">
                   <option value="" disabled hidden>Choose your method to claim</option>
